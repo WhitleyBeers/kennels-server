@@ -18,6 +18,9 @@ class HandleRequests(BaseHTTPRequestHandler):
     """
 
     def parse_url(self, path):
+        """
+        splits the path to access the id
+        """
         # Just like splitting a string in JavaScript. If the
         # path is "/animals/1", the resulting list will
         # have "" at index 0, "animals" at index 1, and "1"
@@ -89,14 +92,14 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             else:
                 response = get_all_locations()
-                
+
         if resource == "employees":
             if id is not None:
                 response = get_single_employee(id)
 
             else:
                 response = get_all_employees()
-                
+
         if resource == "customers":
             if id is not None:
                 response = get_single_customer(id)
@@ -132,7 +135,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_animal = create_animal(post_body)
         # Encode the new animal and send in response
             self.wfile.write(json.dumps(new_animal).encode())
-        
+
         if resource == "locations":
             new_location = create_location(post_body)
             self.wfile.write(json.dumps(new_location).encode())

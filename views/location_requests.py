@@ -17,18 +17,18 @@ def get_all_locations():
     gets all locations
     """
     return LOCATIONS
-  
-  
+
+
 def get_single_location(id):
     """
     gets a single location by its id
     """
     requested_location = None
-    
+
     for location in LOCATIONS:
         if location["id"] == id:
             requested_location = location
-            
+
     return requested_location
 
 

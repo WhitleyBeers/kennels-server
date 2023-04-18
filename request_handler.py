@@ -1,7 +1,7 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from views import get_all_animals, get_single_animal, create_animal
-from views import get_single_location, get_all_locations
+from views import get_single_location, get_all_locations, create_location
 from views import get_all_employees, get_single_employee
 from views import get_all_customers, get_single_customer
 
@@ -130,9 +130,12 @@ class HandleRequests(BaseHTTPRequestHandler):
         # function next.
         if resource == "animals":
             new_animal = create_animal(post_body)
-
         # Encode the new animal and send in response
-        self.wfile.write(json.dumps(new_animal).encode())
+            self.wfile.write(json.dumps(new_animal).encode())
+        
+        if resource == "locations":
+            new_location = create_location(post_body)
+            self.wfile.write(json.dumps(new_location).encode())
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any PUT request.

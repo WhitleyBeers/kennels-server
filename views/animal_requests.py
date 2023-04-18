@@ -48,6 +48,9 @@ def get_single_animal(id):
 
 
 def create_animal(animal):
+    """
+    creates a new animal
+    """
     # Get the id value of the last animal in the list
     max_id = ANIMALS[-1]["id"]
 

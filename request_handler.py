@@ -1,6 +1,9 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from views import get_all_animals, get_single_animal, get_single_location, get_all_locations, get_all_employees, get_single_employee
+from views import get_all_animals, get_single_animal
+from views import get_single_location, get_all_locations
+from views import get_all_employees, get_single_employee
+from views import get_all_customers, get_single_customer
 
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
@@ -93,6 +96,13 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             else:
                 response = get_all_employees()
+                
+        if resource == "customers":
+            if id is not None:
+                response = get_single_customer(id)
+
+            else:
+                response = get_all_customers()
 
         self.wfile.write(json.dumps(response).encode())
 

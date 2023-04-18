@@ -7,10 +7,16 @@ CUSTOMERS = [
 
 
 def get_all_customers():
+    """
+    gets all customers
+    """
     return CUSTOMERS
 
 
 def get_single_customer(id):
+    """
+    gets a customer by its id
+    """
     requested_customer = None
 
     for customer in CUSTOMERS:

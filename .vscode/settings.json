@@ -1,0 +1,8 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.autopep8Path": "/c/Users/HP/.virtualenvs/kennels-server-gj80sHeE/Scripts/autopep8",
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "none"
+}

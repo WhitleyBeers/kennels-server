@@ -139,27 +139,25 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         # Initialize new animal
-        new_animal = None
+        response = None
 
         # Add a new animal to the list. Don't worry about
         # the orange squiggle, you'll define the create_animal
         # function next.
         if resource == "animals":
-            new_animal = create_animal(post_body)
-        # Encode the new animal and send in response
-            self.wfile.write(json.dumps(new_animal).encode())
+            response = create_animal(post_body)
 
         if resource == "locations":
-            new_location = create_location(post_body)
-            self.wfile.write(json.dumps(new_location).encode())
+            response = create_location(post_body)
 
         if resource == "employees":
-            new_employee = create_employee(post_body)
-            self.wfile.write(json.dumps(new_employee))
+            response = create_employee(post_body)
 
         if resource == "customers":
-            new_customer = create_customer(post_body)
-            self.wfile.write(json.dumps(new_customer))
+            response = create_customer(post_body)
+
+                # Encode the new animal and send in response
+        self.wfile.write(json.dumps(response).encode())
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any PUT request.

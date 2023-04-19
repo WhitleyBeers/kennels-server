@@ -10,6 +10,8 @@ from views import get_all_employees, get_single_employee, create_employee
 
 from views import get_all_customers, get_single_customer, create_customer
 
+from views import delete_customer
+
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
 # work together for a common purpose. In this case, that
@@ -173,6 +175,9 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Delete a single animal from the list
         if resource == "animals":
             delete_animal(id)
+
+        if resource == "customers":
+            delete_customer(id)
 
         # Encode the new animal and send in response
         self.wfile.write("".encode())

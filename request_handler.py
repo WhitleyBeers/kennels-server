@@ -4,6 +4,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from views import get_all_animals, get_single_animal, create_animal, delete_animal
 
+from views import update_animal
+
 from views import get_single_location, get_all_locations, create_location
 
 from views import delete_location
@@ -165,7 +167,20 @@ class HandleRequests(BaseHTTPRequestHandler):
     def do_PUT(self):
         """Handles PUT requests to the server
         """
-        self.do_POST()
+        self._set_headers(204)
+        content_len = int(self.headers.get('content-length', 0))
+        post_body = self.rfile.read(content_len)
+        post_body = json.loads(post_body)
+
+        # Parse the URL
+        (resource, id) = self.parse_url(self.path)
+
+        # Delete a single animal from the list
+        if resource == "animals":
+            update_animal(id, post_body)
+
+        # Encode the new animal and send in response
+        self.wfile.write("".encode())
 
     def do_DELETE(self):
         """handles DELETE requests to the server

@@ -8,6 +8,8 @@ from views import get_single_location, get_all_locations, create_location
 
 from views import get_all_employees, get_single_employee, create_employee
 
+from views import delete_employee
+
 from views import get_all_customers, get_single_customer, create_customer
 
 from views import delete_customer
@@ -178,6 +180,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "customers":
             delete_customer(id)
+        
+        if resource == "employees":
+            delete_employee(id)
 
         # Encode the new animal and send in response
         self.wfile.write("".encode())

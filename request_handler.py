@@ -138,7 +138,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Initialize new animal
+        # Initialize response
         response = None
 
         # Add a new animal to the list. Don't worry about
@@ -156,7 +156,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "customers":
             response = create_customer(post_body)
 
-                # Encode the new animal and send in response
+        # Encode the response and send in
         self.wfile.write(json.dumps(response).encode())
 
     # Here's a method on the class that overrides the parent's method.

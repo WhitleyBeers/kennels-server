@@ -8,7 +8,7 @@ from views import delete_customer, update_customer, get_customer_by_email
 
 from views import get_all_customers, get_single_customer, create_customer
 
-from views import delete_employee, update_employee
+from views import delete_employee, update_employee, get_employees_by_location_id
 
 from views import get_all_employees, get_single_employee, create_employee
 
@@ -131,6 +131,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             if query.get('location_id') and resource == "animals":
                 response = get_animal_by_location_id(query['location_id'][0])
+            
+            if query.get('location_id') and resource == "employees":
+                response = get_employees_by_location_id(query['location_id'][0])
 
         self.wfile.write(json.dumps(response).encode())
 

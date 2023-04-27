@@ -4,5 +4,6 @@
   },
   "python.formatting.autopep8Path": "/c/Users/HP/.virtualenvs/kennels-server-gj80sHeE/Scripts/autopep8",
   "python.linting.pylintEnabled": true,
-  "python.formatting.provider": "none"
+  "python.formatting.provider": "none",
+  "python.linting.enabled": true
 }

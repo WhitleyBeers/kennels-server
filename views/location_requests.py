@@ -1,6 +1,6 @@
 import sqlite3
 import json
-from models import Location
+from models import Location, Animal, Employee
 
 LOCATIONS = [
     {
@@ -61,8 +61,39 @@ def get_single_location(id):
         """, ( id, ))
 
         data = db_cursor.fetchone()
-
         location = Location(data['id'], data['name'], data['address'])
+
+        db_cursor.execute("""
+        SELECT
+            a.id,
+            a.name,
+            a.breed,
+            a.status,
+            a.location_id,
+            a.customer_id
+        FROM Animal a
+        WHERE a.location_id = ?
+        """, (( id, )))
+        dataset = db_cursor.fetchall()
+        for row in dataset:
+            animal = Animal(row['id'], row['name'], row['breed'], row['status'],
+                            row['location_id'], row['customer_id'])
+            location.animals.append(animal.__dict__)
+
+        db_cursor.execute("""
+        SELECT
+            e.id,
+            e.name,
+            e.address,
+            e.location_id
+        FROM employee e
+        WHERE e.location_id = ?
+        """, (( id, )))
+        dataset2 = db_cursor.fetchall()
+        for row in dataset2:
+            employees = Employee(row['id'], row['name'],
+                                row['address'], row['location_id'])
+            location.employees.append(employees.__dict__)
 
         return location.__dict__
 

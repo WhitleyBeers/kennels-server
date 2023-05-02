@@ -12,7 +12,7 @@ from views import delete_employee, update_employee, get_employees_by_location_id
 
 from views import get_all_employees, get_single_employee, create_employee
 
-from views import delete_location, update_location
+from views import delete_location, update_location, get_animal_by_search
 
 from views import get_single_location, get_all_locations, create_location
 
@@ -137,6 +137,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             if query.get('status') and resource == "animals":
                 response = get_animal_by_status(query['status'][0])
+
+            if query.get('search') and resource == "animals":
+                response = get_animal_by_search(query['search'][0])
 
         self.wfile.write(json.dumps(response).encode())
 
